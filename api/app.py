@@ -24,13 +24,12 @@ def prediction():
 
     if request.data is not None:
         npar = np.fromstring(request.data, np.uint8)
-        #img = cv2.imdecode(npar, cv2.IMREAD_COLOR)
-        path = os.path.join(os.path.join(os.getcwd(), '../webpages'), 'img.jpg')
-        imge = cv2.imread(path)
-        image = cv2.cvtColor(imge, cv2.COLOR_BGR2RGB)
+        img = cv2.imdecode(npar, cv2.IMREAD_COLOR)
+        #path = os.path.join(os.path.join(os.getcwd(), '../webpages'), 'img.jpg')
+        #imge = cv2.imread(path)
+        image = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
         pred = image_prediction(image)
-        if pred is not None:
-            return jsonify(pred)
+        return jsonify(pred)
 
 
 @app.route('/dummy', methods=['GET', 'POST'])
