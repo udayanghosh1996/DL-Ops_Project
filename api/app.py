@@ -1,11 +1,16 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, render_template
 from Test.predict_image import *
 import numpy as np
 import cv2
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder='../webpages')
+
+
+@app.route('/')
+def home():
+    return render_template('home.html')
 
 
 @app.route('/prediction', methods=['GET', 'POST'])
@@ -34,4 +39,4 @@ def dummy():
 
 
 if __name__ == '__main__':
-    app.run(host='https://udayanghosh1996-dl-ops-project-apiapp-jjz4qw.streamlit.app', port=8080, debug=True)
+    app.run(host='0.0.0.0', port=8080, debug=True)
