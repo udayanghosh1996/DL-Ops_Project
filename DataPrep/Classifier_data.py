@@ -1,9 +1,11 @@
 from torchvision import transforms
 from torchvision.datasets import CIFAR10, CIFAR100
 from torch.utils.data import Dataset
+import os
 
+# DATA_ROOT_PATH = r"F:\MTech_IIT_Jodhpur\3rd_Sem\DL-Ops\Project\DLOps_Project\DataPrep\datasets"
 
-DATA_ROOT_PATH = r"F:\MTech_IIT_Jodhpur\3rd_Sem\DL-Ops\Project\DLOps_Project\DataPrep\datasets"
+DATA_ROOT_PATH = os.path.join(os.path.join(os.getcwd(), 'DataPrep'), 'dataset')
 
 
 class ClassiferData(Dataset):

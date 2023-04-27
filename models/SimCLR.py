@@ -13,7 +13,9 @@ from torch.autograd import Variable
 
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 # DEVICE = torch.device("cpu")
-SAVE_DIR = r"F:\MTech_IIT_Jodhpur\3rd_Sem\DL-Ops\Project\DLOps_Project\artifacts"
+# SAVE_DIR = r"F:\MTech_IIT_Jodhpur\3rd_Sem\DL-Ops\Project\DLOps_Project\artifacts"
+
+SAVE_DIR = os.path.join(os.getcwd(), 'artifacts')
 
 
 class ResNet18enc:
@@ -164,7 +166,7 @@ class Classifier(torch.nn.Module):
         self.clf_layer2.load_state_dict(torch.load(layer2_state_dict_path, map_location=DEVICE))
 
     def fine_tuning(self, dataset_name, epochs, enc_lr, proj_lr, clf_lr,
-                   batch_size=16, base_enc_finetune_layers=0):
+                    batch_size=16, base_enc_finetune_layers=0):
         dataset = ClassiferData(dataset_name, "train")
         dataloader = DataLoader(dataset, batch_size=batch_size,
                                 num_workers=3,
@@ -211,5 +213,3 @@ class Classifier(torch.nn.Module):
             print(f"epoch {epoch} ---- {loss.item()}")
         self.save_model()
         print("model saved")
-
-

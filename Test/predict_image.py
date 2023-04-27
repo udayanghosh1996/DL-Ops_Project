@@ -1,3 +1,5 @@
+import os
+
 from torchvision import transforms
 from models.SimCLR import *
 
@@ -8,7 +10,7 @@ transform = transforms.Compose([transforms.ToTensor(),
 
 def image_prediction(image):
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    clf = Classifier()
+    clf = Classifier(100)
     model = clf.load_model()
     model.eval()
     image_ = transform(image)
@@ -21,4 +23,3 @@ def image_prediction(image):
     for i in range(len(prob)):
         pred.append({'Prediction Probability': prob, 'Prediction Class': obj})
     return pred
-
