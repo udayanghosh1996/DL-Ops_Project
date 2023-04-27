@@ -1,6 +1,7 @@
 channles:
   - conda-forge
 dependencies:
+- pip:
   - tqdm==4.65.0
   - flask==2.2.2
   - opencv-python==4.7.0.68
