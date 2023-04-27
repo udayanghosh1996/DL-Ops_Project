@@ -1,3 +1,5 @@
+import os
+
 import numpy as np
 import torch
 from torchvision import transforms
@@ -5,7 +7,8 @@ from torchvision.datasets import CIFAR10, CIFAR100
 from torch.utils.data import Dataset
 
 
-DATA_ROOT_PATH = r"F:\MTech_IIT_Jodhpur\3rd_Sem\DL-Ops\Project\DLOps_Project\DataPrep\datasets"
+# DATA_ROOT_PATH = r"F:\MTech_IIT_Jodhpur\3rd_Sem\DL-Ops\Project\DLOps_Project\DataPrep\datasets"
+DATA_ROOT_PATH = os.path.join(os.path.join(os.getcwd(), 'DataPrep'), 'dataset')
 
 
 class SimCLRDataset(Dataset):
@@ -48,3 +51,5 @@ class SimCLRDataset(Dataset):
             aug_tensors.append(self.data_transforms(self.all_img_np[idx]))
             original_tensors.append(self.no_transforms(self.all_img_np[idx]))
         return torch.stack(original_tensors), torch.stack(aug_tensors)
+
+

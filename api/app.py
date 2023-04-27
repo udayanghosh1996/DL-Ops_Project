@@ -1,3 +1,5 @@
+import os
+
 from flask import Flask, jsonify, request, render_template
 from Test.predict_image import *
 import numpy as np
@@ -6,7 +8,6 @@ import cv2
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 app = Flask(__name__, template_folder='../webpages')
-
 
 @app.route('/')
 def home():
@@ -20,10 +21,13 @@ def prediction():
         pred = image_prediction(json_['image1'])
         if pred is not None:
             return jsonify(pred)'''
+
     if request.data is not None:
-        npar = np.fromstring(r.data, np.uint8)
-        img = cv2.imdecode(npar, cv2.IMREAD_COLOR)
-        image = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+        npar = np.fromstring(request.data, np.uint8)
+        #img = cv2.imdecode(npar, cv2.IMREAD_COLOR)
+        path = os.path.join(os.path.join(os.getcwd(), '../webpages'), 'img.jpg')
+        imge = cv2.imread(path)
+        image = cv2.cvtColor(imge, cv2.COLOR_BGR2RGB)
         pred = image_prediction(image)
         if pred is not None:
             return jsonify(pred)
@@ -39,4 +43,4 @@ def dummy():
 
 
 if __name__ == '__main__':
-    app.run(host='https://udayanghosh1996-dl-ops-project-apiapp-jjz4qw.streamlit.app', port=8080, debug=True)
+    app.run(host='https://udayanghosh1996-dl-ops-project-apiapp-jjz4qw.streamlit.app/', debug=True)
