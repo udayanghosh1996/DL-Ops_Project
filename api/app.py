@@ -42,4 +42,4 @@ def dummy():
 
 
 if __name__ == '__main__':
-    app.run(host='https://udayanghosh1996-dl-ops-project-apiapp-jjz4qw.streamlit.app/', debug=True)
+    app.run(host='https://udayanghosh1996-dl-ops-project-apiapp-jjz4qw.streamlit.app', debug=True)
