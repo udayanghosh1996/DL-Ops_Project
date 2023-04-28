@@ -1,7 +1,7 @@
 import os
 
 from flask import Flask, jsonify, request, render_template
-from app.dl_ops_project.Test.predict_image import *
+from dl_ops_project.Test.predict_image import *
 import numpy as np
 import cv2
 
