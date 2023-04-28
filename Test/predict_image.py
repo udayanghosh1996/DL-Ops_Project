@@ -1,5 +1,5 @@
 from torchvision import transforms
-from app.dl-ops_project.models.SimCLR import *
+from app.dl_ops_project.models.SimCLR import *
 
 transform = transforms.Compose([transforms.ToTensor(),
                                 transforms.Resize(32)
